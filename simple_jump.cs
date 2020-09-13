@@ -1,10 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class simple_jump : MonoBehaviour
 {
-    private enum State { Start, S1, S2, S3, S4, S5 }
+    private enum State { Floor, S1, S2, S3, S4, S5 }
     [SerializeField] private State _state;
     [SerializeField] private GameObject _stair;
     [SerializeField] private GameObject _floor;    
@@ -16,7 +16,7 @@ public class simple_jump : MonoBehaviour
     void Start()
     {
         //  1
-        _state = State.Start;         
+        _state = State.Floor;         
     }
 
     // Update is called once per frame
@@ -36,36 +36,46 @@ public class simple_jump : MonoBehaviour
         //}
     }
 
+
     // 2
     void stateAction() {
+
         switch (_state)
-        {
-            case State.Start:
-                jumpTo(_stair.transform.Find("S1").position);
-                _state = State.S1;
-                break;
-            case State.S1:
-                jumpTo(_stair.transform.Find("S2").position);
-                _state = State.S2;
-                break;
-            case State.S2:
-                jumpTo(_stair.transform.Find("S3").position);
-                _state = State.S3;
-                break;
-            case State.S3:
-                jumpTo(_stair.transform.Find("S4").position);
-                _state = State.S4;
-                break;
-            case State.S4:
-                jumpTo(_stair.transform.Find("S5").position);
-                _state = State.S5;
-                break;
-            case State.S5:
-                jumpTo(_floor.transform.position);
-                _state = State.Start;
-                break;    
+        { 
+                case State.Floor:
+                    _state = (State)Random.Range(0, 5);
+                    string S = _state.ToString();
+                    jumpTo(_stair.transform.Find(S).position);
+                    _state = (State)Random.Range(0, 5);
+                    break;
+                case State.S1:
+                    S = _state.ToString();
+                    jumpTo(_stair.transform.Find(S).position);
+                    _state = (State)Random.Range(0, 5);
+                    break;
+                case State.S2:
+                    S = _state.ToString();
+                    jumpTo(_stair.transform.Find(S).position);
+                    _state = (State)Random.Range(0, 5);
+                    break;
+                case State.S3:
+                    S = _state.ToString();
+                    jumpTo(_stair.transform.Find(S).position);
+                    _state = (State)Random.Range(0, 5);
+                    break;
+                case State.S4:
+                    S = _state.ToString();
+                    jumpTo(_stair.transform.Find(S).position);
+                    _state = (State)Random.Range(0, 5);
+                    break;
+                case State.S5:
+                    S = _state.ToString();
+                    jumpTo(_stair.transform.Find(S).position);
+                    _state = (State)Random.Range(0, 5);
+                    break;
         }
     }
+
 
     //  3
     void jumpTo(Vector3 point){
@@ -83,4 +93,5 @@ public class simple_jump : MonoBehaviour
         float sqrt = Mathf.Sqrt(Mathf.Abs(jumpUpVelocity * jumpUpVelocity - 2 * g * (transform.position - point).y ));
         return Mathf.Min(-jumpUpVelocity + sqrt, -jumpUpVelocity - sqrt ) / g;
     }
+
 }
