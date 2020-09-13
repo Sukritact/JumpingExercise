@@ -40,41 +40,14 @@ public class simple_jump : MonoBehaviour
     // 2
     void stateAction() {
 
-        switch (_state)
-        { 
-                case State.Floor:
-                    _state = (State)Random.Range(0, 5);
-                    string S = _state.ToString();
-                    jumpTo(_stair.transform.Find(S).position);
-                    _state = (State)Random.Range(0, 5);
-                    break;
-                case State.S1:
-                    S = _state.ToString();
-                    jumpTo(_stair.transform.Find(S).position);
-                    _state = (State)Random.Range(0, 5);
-                    break;
-                case State.S2:
-                    S = _state.ToString();
-                    jumpTo(_stair.transform.Find(S).position);
-                    _state = (State)Random.Range(0, 5);
-                    break;
-                case State.S3:
-                    S = _state.ToString();
-                    jumpTo(_stair.transform.Find(S).position);
-                    _state = (State)Random.Range(0, 5);
-                    break;
-                case State.S4:
-                    S = _state.ToString();
-                    jumpTo(_stair.transform.Find(S).position);
-                    _state = (State)Random.Range(0, 5);
-                    break;
-                case State.S5:
-                    S = _state.ToString();
-                    jumpTo(_stair.transform.Find(S).position);
-                    _state = (State)Random.Range(0, 5);
-                    break;
+        while (Mathf.Approximately(GetComponent<Rigidbody>().velocity.y, 0.0f))
+        {
+            _state = (State)Random.Range(0, 5);
+            string S = _state.ToString();
+            jumpTo(_stair.transform.Find(S).position);
         }
     }
+    
 
 
     //  3
