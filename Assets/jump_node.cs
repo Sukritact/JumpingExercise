@@ -34,8 +34,6 @@ public class jump_node : MonoBehaviour
 		float B = (transform.position.z % 5.0f)/5.0f;
 		Gizmos.color = new Color(R, G, B, 1.0f);
 
-		Debug.Log(Gizmos.color);
-
 		Gizmos.DrawSphere(transform.position, 0.5f);
 		foreach(jump_node child_node in child_nodes){
 			Gizmos.DrawLine(transform.position, child_node.transform.position);

@@ -34,7 +34,9 @@ public class simple_jump : MonoBehaviour
 		if (current_node.IsDeadEnd(forward)) forward = !forward;
 
 		jump_node new_node = current_node.GetRandomNode(forward);
-		jumpTo(new_node.transform.position);
+		Vector3 target = new_node.transform.position;
+		target.y += new_node.transform.lossyScale.y/2;
+		jumpTo(target);
 		current_node = new_node;
 	}
 
